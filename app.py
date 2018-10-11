@@ -11,10 +11,10 @@ from flask_pymongo import PyMongo
 from flask_login import LoginManager, current_user
 from flask_login import login_user, logout_user
 from flask_login import login_required
-from fooApp.models import User
+from models import User
 from flask import abort, jsonify, redirect, render_template
 from flask import url_for
-from fooApp.forms import ProductForm, LoginForm
+from forms import ProductForm, LoginForm
 
 from bson.objectid import ObjectId
 
@@ -25,9 +25,8 @@ app = Flask(__name__)
 
 #app.config#['MONGO_DBNAME'] = 'foodb'
 #app.config#['MONGO_URI'] = 'mongodb://localhost:27017/foodb'
-app.config['MONGO_DBNAME'] = <agiledb>
-app.config['MONGO_URI'] = 
-            "mongodb://<dbuser>:<dbpassword>@ds215633.mlab.com:15633/agiledb"
+app.config['MONGO_DBNAME'] = 'agiledb'
+app.config['MONGO_URI'] = 'mongodb://<dbuser>:<dbpassword>@ds215633.mlab.com:15633/agiledb'
 mongo = PyMongo(app)
 
 #@app.route('/')
