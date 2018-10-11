@@ -26,6 +26,7 @@ app = Flask(__name__)
 #app.config#['MONGO_DBNAME'] = 'foodb'
 #app.config#['MONGO_URI'] = 'mongodb://localhost:27017/foodb'
 app.config['MONGO_DBNAME'] = 'agiledb'
+app.config['MONGO_URI'] = 'mongodb://ramon48:dpizds8p@ds215633.mlab.com:15633/agiledb'
 mongo = PyMongo(app)
 
 #@app.route('/')
