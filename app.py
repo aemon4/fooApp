@@ -60,6 +60,7 @@ def product_detail(product_id):
     product=product)
   
 
+
 @app.route( 
   '/products/<product_id>/edit/',
   methods=['GET', 'POST'])
@@ -68,14 +69,19 @@ def product_edit(product_id):
     product = mongo.db.products.find_one({ "_id": ObjectId(product_id) })
     if product is None:
         abort(404)
-    #if request.method =='GET':
-    #    form = ProductForm(product.form)
-    #else :
+
     form = ProductForm(request.form)
+    
+ 
     if request.method == 'POST' and form.validate():
-        mongo.db.products.insert_one(form.data)
-    # Success. Send user back to full product list.
+        
+        mongo.db.products.update_one({"_id":ObjectId(product_id) },
+                                          {'$set':{'name':form.data['name'],'description':form.data['description'] ,'price':form.data['price']}})
+
+
         return redirect(url_for('products_list'))
+     
+    form.fill(product) 
     return render_template('product/edit.html', form=form)
 
 @app.route('/products/create/', methods=['GET', 'POST'])

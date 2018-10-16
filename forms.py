@@ -16,6 +16,10 @@ class ProductForm(Form):
   description = TextAreaField('Description')
   price = FloatField('price',[NumberRange(0.00),required()] )
   
+  def fill(self,product):
+    self.name.data = product['name']
+    self.description.data = product['description']
+    self.price.data = product['price']
 
 
 class LoginForm(Form):
